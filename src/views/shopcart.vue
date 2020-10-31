@@ -3,9 +3,9 @@
 
       <!-- 顶部开始 -->
       <search></search>
-    <div class="container">
+    <div class="container" v-if="this.$store.state.list.length!=0">
     <div class="check">
-      <input type="checkbox" v-model="flag" @change="ch()" />全选/取消
+      <input type="checkbox" v-model="flag" @change="ch()" />结算/取消
     </div>
     <div v-for="(pro, i) in this.$store.state.list" :key="i" class="dis">
         
@@ -30,6 +30,9 @@
     <div class="count">
       <p>总价为：¥{{ count }}</p>
     </div>
+    </div>
+    <div v-else class="hang">
+      <p class="goods">购物车里没有商品呢,<router-link to="/"><span>去逛逛</span></router-link></p>
     </div>
       <!-- 顶部结束 -->
       <!-- 底部选项卡开始 -->
@@ -184,5 +187,16 @@ export default {
     width: 100%;
     box-sizing: border-box;
     margin: 0 auto;
+  }
+  .hang{
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  .goods{
+    color: silver;
+  }
+  .goods span{
+    color: red;
   }
 </style>
